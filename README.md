@@ -12,10 +12,9 @@ Je gaat dit doen met behulp van de REST Counties API. De documentatie over de ve
 kun je [hier](https://restcountries.eu/#api-endpoints-language) vinden. 
 
 ## Voor je begint
-1. Koppel jouw javaScript bestand met de HTML pagina. Doe dit ook voor het CSS bestand.
-2. Maak een `package.json` aan met `npm init --yes`
-3. Installeer de npm package `axios` met `npm install axios --save`. Als de de [documentatie](https://www.npmjs.com/package/axios) 
-bekijkt en op `async` zoekt, vindt je een code-voorbeeld.
+1. Koppel jouw JavaScript bestand met de HTML pagina. Doe dit ook voor het CSS bestand.
+2. Maak een `package.json` aan met `npm init --yes`.
+3. Installeer de npm package `axios` met `npm install axios --save`.
 4. Zorg ervoor dat we toegang hebben tot deze package door `<script src="./node_modules/axios/dist/axios.min.js"></script>`
 aan onze HTML toe te voegen.
 4. Vergeet niet dat je bij iedere wijziging eerst moet opslaan en de browser moet refreshen. 
@@ -25,8 +24,8 @@ Check bij de pseudo-antwoorden of je geen stappen overgeslagen hebt. Begin dan p
 
 ## Plan de campagne
 1. Maak een 'Zoek'-knop op de pagina en koppel deze aan een functie die de gegevens over `België` ophaalt en dit in de console logt.
-2. Maak de volgende string en log dit in de console: `[country-naam] is situated in [subarea-name]. It has a population of [amount] people.`
-3. Maak de volgende string en log dit in de console: `The capital is [city]`
+2. Maak op basis van de response de volgende string en log dit in de console: `[country-naam] is situated in [subarea-name]. It has a population of [amount] people.`
+3. Maak op basis van de response de volgende string en log dit in de console: `The capital is [city]`
 4. Maak een functie die ongeacht het aantal currencies die in een land gebruikt worden, een string maakt:
     * 1 valuta: `and you can pay with [currency]'s`
     * 2 valuta's: `and you can pay with [currency]'s and [currency]'s`
@@ -47,13 +46,14 @@ The capital is [city] and you can pay with [currency]'s
 They speak [language], [language] and [language]
 ```
 
-8. Maak een inputveld op de pagina en zorg ervoor dat als de gebruiker op enter drukt, de functie wordt 
-aangeroepen waarmee de gegevens over `België` worden opgehaald. 
+8. Maak een inputveld op de pagina. Zorg ervoor dat als de gebruiker op enter drukt, 
+de functie (waarmee de gegevens over `België` worden opgehaald) wordt aangeroepen.
 
-9. Zorg er nu voor dat de waarde van het input veld wordt gebruikt in de API url als de gebruiker op 
-enter drukt, of als de gebruiker op de knop klikt. _Tip:_ gebruik een globale variabele.
+9. Zorg ervoor dat de waarde uit het input veld wordt gebruikt als query voor het GET request. 
+Er moet alleen een request gedaan worden als de gebruiker op enter drukt, of op de zoek-knop klikt.
+_Tip:_ gebruik een globale variabele.
 
-10. Zorg ervoor dat de waarde van het input veld wordt leeggemaakt na elke zoekopdracht
+10. Zorg ervoor dat de waarde van het input veld wordt leeggemaakt na elke zoekopdracht.
 
 11. Zorg ervoor dat er altijd maar één zoekresultaat op de pagina staat.
 
@@ -90,6 +90,7 @@ They speak [language], [language] and [language]
 
 8. Maak een inputveld op de pagina en zorg ervoor dat als de gebruiker op enter drukt, de functie wordt 
 aangeroepen waarmee de gegevens over `België` worden opgehaald. 
+_Tip:_ Als de de [documentatie](https://www.npmjs.com/package/axios) bekijkt en op `async` zoekt, vindt je een voorbeeld van een GET-request.
 
 9. Zorg er nu voor dat de waarde van het input veld wordt gebruikt in de API url als de gebruiker op 
 enter drukt, of als de gebruiker op de knop klikt. _Tip:_ gebruik een globale variabele.
