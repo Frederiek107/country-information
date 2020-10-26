@@ -23,7 +23,9 @@ aan onze HTML toe te voegen.
 Check bij de pseudo-antwoorden of je geen stappen overgeslagen hebt. Begin dan pas met programmeren.
 
 ## Plan de campagne
-1. Maak een 'Zoek'-knop op de pagina en koppel deze aan een functie die de gegevens over `België` ophaalt en dit in de console logt.
+1. Maak een 'Zoek'-knop op de pagina en koppel deze aan een functie die de gegevens over `België` ophaalt en dit in de console logt. 
+_Tip:_ Als de de [documentatie](https://www.npmjs.com/package/axios) bekijkt en op `async` zoekt, vindt je een voorbeeld van een GET-request.
+
 2. Maak op basis van de response de volgende string en log dit in de console: `[country-naam] is situated in [subarea-name]. It has a population of [amount] people.`
 3. Maak op basis van de response de volgende string en log dit in de console: `The capital is [city]`
 4. Maak een functie die ongeacht het aantal currencies die in een land gebruikt worden, een string maakt:
@@ -48,7 +50,6 @@ They speak [language], [language] and [language]
 
 8. Maak een inputveld op de pagina en zorg ervoor dat als de gebruiker op enter drukt, de functie wordt 
 aangeroepen waarmee de gegevens over `België` worden opgehaald. 
-_Tip:_ Als de de [documentatie](https://www.npmjs.com/package/axios) bekijkt en op `async` zoekt, vindt je een voorbeeld van een GET-request.
 
 9. Zorg ervoor dat de waarde uit het input veld wordt gebruikt als query voor het GET request. 
 Er moet alleen een request gedaan worden als de gebruiker op enter drukt, of op de zoek-knop klikt.
