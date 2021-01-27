@@ -28,12 +28,11 @@ _Tip:_ Als de de [documentatie](https://www.npmjs.com/package/axios) bekijkt en 
 
 2. Maak op basis van de response de volgende string en log dit in de console: `[country-naam] is situated in [subarea-name]. It has a population of [amount] people.`
 3. Maak op basis van de response de volgende string en log dit in de console: `The capital is [city]`
-4. Maak een functie die ongeacht het aantal currencies die in een land gebruikt worden, een string maakt:
+4. Maak een functie die ongeacht het aantal currencies die in een land gebruikt worden, een string maakt. In een land kunnen één of twee currencies gebruikt worden:
     * 1 valuta: `and you can pay with [currency]'s`
     * 2 valuta's: `and you can pay with [currency]'s and [currency]'s`
-    * 3 valuta's: `and you can pay with [currency]'s, [currency]'s and [currency]'s`
-5. Check of alles nog steeds werkt als je de gegevens over _Aruba_ of _Duitsland_ ophaalt.
-6. Maak een functie die ongeacht het aantal talen die in een land gesproken worden, een string maakt:
+5. Check of alles nog steeds werkt als je de gegevens over _Aruba_ of _Duitsland_ ophaalt!
+6. _Bonusopdracht:_ Maak een functie die ongeacht het aantal talen die in een land gesproken worden, een string maakt:
     * 1 taal: `They speak [language]`
     * 2 talen: `They speak [language] and [language]` 
     * 3 talen: `They speak [language], [language] and [language]`
@@ -64,4 +63,4 @@ _Tip:_ als er een ongeldige API call wordt gemaakt, zal de response in het `catc
 
 13. Zorg ervoor dat als je na een ongeldige API call weer een geldige API call maakt, de foutmelding verdwenen is.
 
-14. **Bonus:** make it look nice! 😍
+14. **Bonusopdracht:** make it look nice! 😍
