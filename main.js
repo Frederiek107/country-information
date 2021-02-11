@@ -2,6 +2,7 @@ const mainpage = document.getElementById("mainpage");
 const button = document.createElement("button");
 button.textContent="search";
 mainpage.appendChild(button);
+button.addEventListener("click", fetchData());
 
 async function fetchData() {
     const endpoint=await axios.get("https://restcountries.eu/rest/v2/name/belgie?fullText=true");
@@ -32,4 +33,26 @@ async function fetchCurrencies() {
 
 fetchCurrencies();
 
+async function fetchLanguages() {
+    const endpoint=await axios.get("https://restcountries.eu/rest/v2/name/belgium?fullText=true");
+    let string="They speak ";
+    const languages= endpoint.data[0].languages;
+    for (const language of languages) {
+        if (language===languages[0]) {
+            string = string + language.name;
+        }
+        if (languages.length===2 && language === languages[1]) {
+            string = string + " and " + language.name;
+        }
+        if (languages.length > 2 && language !==languages[0] && language !== languages[languages.length-1]) {
+            string = string + ", " + language.name;
+        }
+        if (languages.length > 2 && language === languages[languages.length-1]) {
+            string = string + " and " + language.name;
+        }
+    }
+    console.log(string);
+    return string;
+}
 
+fetchLanguages();
