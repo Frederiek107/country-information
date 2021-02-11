@@ -56,3 +56,17 @@ async function fetchLanguages() {
 }
 
 fetchLanguages();
+
+
+async function showResults() {
+    const endpoint=await axios.get("https://restcountries.eu/rest/v2/name/belgium?fullText=true");
+    const flagItem = document.createElement("img");
+    const country=endpoint.data[0];
+    flagItem.setAttribute("src", country.flag);
+    mainpage.appendChild(flagItem);
+    const result=document.createElement("div");
+    result.textContent= country.name + fetchData() + fetchCurrencies() + fetchLanguages();
+    console.log(result);
+}
+
+showResults();
