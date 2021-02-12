@@ -1,9 +1,8 @@
 const button = document.getElementById("button");
 button.addEventListener("click", showDataButton);
 const input = document.getElementById("input");
-input.addEventListener("keyup", showDataKeyboard)
-const page = document.getElementById("mainpage");
-
+input.addEventListener("keyup", showDataKeyboard);
+const page= document.getElementById("mainpage");
 
 function returnURL() {
     let inputValue = input.value;
@@ -50,7 +49,7 @@ async function fetchCurrencies() {
 
 async function fetchLanguages() {
     const endpoint = await axios.get(returnURL());
-    let string = "They speak ";
+    let string = "The people from " + endpoint.data[0].name + " speak ";
     const languages = endpoint.data[0].languages;
     for (const language of languages) {
         if (language === languages[0] && languages.length === 1) {
@@ -91,12 +90,15 @@ async function showResults() {
         result.setAttribute('style', 'white-space: pre;');
         result.textContent = country.name + "\n" + await fetchData() + "\n" + await fetchCurrencies() + "\n" + await fetchLanguages();
         page.appendChild(await fetchFlag());
+        page.style.removeProperty("display");
+        page.style.setProperty("display","flex");
         page.appendChild(result);
         input.value = "";
     } catch (e) {
         page.textContent = "";
         const errorMessage = document.createElement("p");
         errorMessage.textContent = "We couldn't find this country. Please try again!";
+        errorMessage.setAttribute("id", "error");
         page.appendChild(errorMessage);
     }
 }
