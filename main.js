@@ -1,7 +1,9 @@
 const button = document.getElementById("button");
 button.addEventListener("click", showDataButton);
 const input = document.getElementById("input");
-input.addEventListener("keyup", showDataKeyboard);
+input.addEventListener("keyup", showDataKeyboard)
+const page = document.getElementById("mainpage");
+
 
 function returnURL() {
     let inputValue = input.value;
@@ -9,101 +11,61 @@ function returnURL() {
     return apiURL;
 }
 
-
 async function showDataButton(e) {
-    try {
-        const endpoint = await axios.get(returnURL());
-        const country = endpoint.data[0];
-        const page = document.getElementById("mainpage");
-        page.textContent = "";
-        const result = document.createElement("p");
-        result.setAttribute('style', 'white-space: pre;');
-        result.textContent = country.name + "\n" + await fetchData() + "\n" + await fetchCurrencies() + "\n" + await fetchLanguages();
-        page.appendChild(await fetchFlag());
-        page.appendChild(result);
-        const input = document.getElementById("input");
-        document.getElementById("input").value = "";
-    }
-    catch (e) {
-        const page=document.getElementById("mainpage");
-        page.textContent="";
-        const errorMessage = document.createElement("p");
-        errorMessage.textContent="We couldn't find this country. Please try again!";
-        page.appendChild(errorMessage);
-    }
+        showResults();
 }
 
-async function showDataKeyboard(e) {
-    const condition=e.keyCode===13;
+function showDataKeyboard(e) {
+    const condition = e.keyCode === 13;
     if (condition) {
-        try {
-            const endpoint = await axios.get(returnURL());
-            const country = endpoint.data[0];
-            const page = document.getElementById("mainpage");
-            page.textContent = "";
-            const result = document.createElement("p");
-            result.setAttribute('style', 'white-space: pre;');
-            result.textContent = country.name + "\n" + await fetchData() + "\n" + await fetchCurrencies() + "\n" + await fetchLanguages();
-            page.appendChild(await fetchFlag());
-            page.appendChild(result);
-            input.removeAttribute("value");
-            document.getElementById("input").value = "";
-        }
-        catch (e) {
-            const page=document.getElementById("mainpage");
-            page.textContent="";
-            const errorMessage = document.createElement("p");
-            errorMessage.textContent="We couldn't find this country. Please try again!";
-            page.appendChild(errorMessage);
-        }
+        showResults();
     }
 }
 
 async function fetchData() {
-    const endpoint=await axios.get(returnURL());
+    const endpoint = await axios.get(returnURL());
     console.log(endpoint.data[0].name + " is situated in " + endpoint.data[0].subregion + ". " +
-        "It has a population of " + endpoint.data[0].population + " people.");
+            "It has a population of " + endpoint.data[0].population + " people.");
     console.log("The capital is " + endpoint.data[0].capital + ".");
-    const result= endpoint.data[0].name + " is situated in " + endpoint.data[0].subregion + ". "
-        + "It has a population of " + endpoint.data[0].population + " people."
+    const result = endpoint.data[0].name + " is situated in " + endpoint.data[0].subregion + ". "
+            + "It has a population of " + endpoint.data[0].population + " people."
     return result;
-}
+    }
 
 async function fetchCurrencies() {
-   const endpoint=await axios.get(returnURL());
-    let string= "The capital is " + endpoint.data[0].capital + " and you can pay with ";
-    const currencies= endpoint.data[0].currencies;
-   for (const currency of currencies) {
-       console.log(currency);
-       if (currency === currencies[0]) {
-           string = string + (currency.name) + "'s.";
-       }
-       else if (currency > currencies[0]) {
-           string = string + " and " + (currency.name) + "'s."
-       }
-   }
-   console.log(string);
-   return string;
+    const endpoint = await axios.get(returnURL());
+    let string = "The capital is " + endpoint.data[0].capital + " and you can pay with ";
+    const currencies = endpoint.data[0].currencies;
+    for (const currency of currencies) {
+        console.log(currency);
+        if (currency === currencies[0]) {
+            string = string + (currency.name) + "'s.";
+        } else if (currency > currencies[0]) {
+            string = string + " and " + (currency.name) + "'s."
+        }
+    }
+    console.log(string);
+    return string;
 }
 
 async function fetchLanguages() {
-    const endpoint=await axios.get(returnURL());
-    let string="They speak ";
-    const languages= endpoint.data[0].languages;
+    const endpoint = await axios.get(returnURL());
+    let string = "They speak ";
+    const languages = endpoint.data[0].languages;
     for (const language of languages) {
-        if (language===languages[0] && languages.length===1) {
+        if (language === languages[0] && languages.length === 1) {
             string = string + language.name + ".";
         }
-        if (language===languages[0] && languages.length>1) {
+        if (language === languages[0] && languages.length > 1) {
             string = string + language.name;
         }
-        if (languages.length===2 && language === languages[1]) {
+        if (languages.length === 2 && language === languages[1]) {
             string = string + " and " + language.name + ".";
         }
-        if (languages.length > 2 && language !==languages[0] && language !== languages[languages.length-1]) {
+        if (languages.length > 2 && language !== languages[0] && language !== languages[languages.length - 1]) {
             string = string + ", " + language.name;
         }
-        if (languages.length > 2 && language === languages[languages.length-1]) {
+        if (languages.length > 2 && language === languages[languages.length - 1]) {
             string = string + " and " + language.name + ".";
         }
     }
@@ -112,23 +74,32 @@ async function fetchLanguages() {
 }
 
 async function fetchFlag() {
-    const endpoint=await axios.get(returnURL());
+    const endpoint = await axios.get(returnURL());
     const flagItem = document.createElement("img");
-    const country=endpoint.data[0];
+    const country = endpoint.data[0];
     flagItem.setAttribute("src", country.flag);
     flagItem.setAttribute("id", "flag");
     return flagItem;
 }
 
 async function showResults() {
-    const endpoint=await axios.get(returnURL());
-    const country=endpoint.data[0];
-    const page=document.getElementById("mainpage");
-    const result=document.createElement("p");
-    result.setAttribute('style', 'white-space: pre;');
-    result.textContent= country.name + "\n" + await fetchData() + "\n" + await fetchCurrencies() + "\n" + await fetchLanguages();
-    page.appendChild(await fetchFlag());
-    page.appendChild(result);
+    try {
+        const endpoint = await axios.get(returnURL());
+        const country = endpoint.data[0];
+        page.textContent = "";
+        const result = document.createElement("p");
+        result.setAttribute('style', 'white-space: pre;');
+        result.textContent = country.name + "\n" + await fetchData() + "\n" + await fetchCurrencies() + "\n" + await fetchLanguages();
+        page.appendChild(await fetchFlag());
+        page.appendChild(result);
+        input.value = "";
+    } catch (e) {
+        page.textContent = "";
+        const errorMessage = document.createElement("p");
+        errorMessage.textContent = "We couldn't find this country. Please try again!";
+        page.appendChild(errorMessage);
+    }
 }
+
 
 
