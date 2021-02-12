@@ -14,11 +14,14 @@ async function showDataButton(e) {
     const endpoint= await axios.get(returnURL());
     const country=endpoint.data[0];
     const page=document.getElementById("mainpage");
+    page.textContent="";
     const result=document.createElement("p");
     result.setAttribute('style', 'white-space: pre;');
     result.textContent= country.name + "\n" + await fetchData() + "\n" + await fetchCurrencies() + "\n" + await fetchLanguages();
     page.appendChild(await fetchFlag());
     page.appendChild(result);
+    const input=document.getElementById("input");
+    document.getElementById("input").value="";
 }
 
 async function showDataKeyboard(e) {
@@ -27,11 +30,14 @@ async function showDataKeyboard(e) {
         const endpoint= await axios.get(returnURL());
         const country=endpoint.data[0];
         const page=document.getElementById("mainpage");
+        page.textContent="";
         const result=document.createElement("p");
         result.setAttribute('style', 'white-space: pre;');
         result.textContent= country.name + "\n" + await fetchData() + "\n" + await fetchCurrencies() + "\n" + await fetchLanguages();
         page.appendChild(await fetchFlag());
         page.appendChild(result);
+        input.removeAttribute("value");
+        document.getElementById("input").value="";
     }
 }
 
@@ -67,8 +73,11 @@ async function fetchLanguages() {
     let string="They speak ";
     const languages= endpoint.data[0].languages;
     for (const language of languages) {
-        if (language===languages[0]) {
+        if (language===languages[0] && languages.length===1) {
             string = string + language.name + ".";
+        }
+        if (language===languages[0] && languages.length>1) {
+            string = string + language.name;
         }
         if (languages.length===2 && language === languages[1]) {
             string = string + " and " + language.name + ".";
