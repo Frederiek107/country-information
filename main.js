@@ -86,10 +86,14 @@ async function showResults() {
         const endpoint = await axios.get(returnURL());
         const country = endpoint.data[0];
         page.textContent = "";
-        const result = document.createElement("p");
+        const result = document.createElement("div");
+        const resultname= document.createElement("div");
+        resultname.setAttribute('id', 'name');
         result.setAttribute('style', 'white-space: pre;');
-        result.textContent = country.name + "\n" + await fetchData() + "\n" + await fetchCurrencies() + "\n" + await fetchLanguages();
-        page.appendChild(await fetchFlag());
+        result.textContent = await fetchData() + "\n" + await fetchCurrencies() + "\n" + await fetchLanguages();
+        resultname.textContent = country.name;
+        resultname.appendChild(await fetchFlag());
+        page.appendChild(resultname);
         page.style.removeProperty("display");
         page.style.setProperty("display","flex");
         page.appendChild(result);
@@ -100,6 +104,7 @@ async function showResults() {
         errorMessage.textContent = "We couldn't find this country. Please try again!";
         errorMessage.setAttribute("id", "error");
         page.appendChild(errorMessage);
+        input.value = "";
     }
 }
 
