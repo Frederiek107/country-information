@@ -1,0 +1,64 @@
+body {
+    background-color: #041929;
+}
+
+#flag {
+    width: 60px;
+    height:40px;
+    margin-right: 10px;
+}
+
+h1 {
+    color: goldenrod;
+    font-family: fantasy;
+}
+
+input {
+    border-radius: 17px;
+    height: 20px;
+}
+
+button {
+    width: 75px;
+    height: 30px;
+    border-radius: 17px;
+    color: #041929;
+    font-family: Calibri;
+    font-weight: bold;
+    background-color: goldenrod;
+}
+
+button:hover {
+    color: goldenrod;
+    background-color: darkgreen;
+}
+
+#elements {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#error {
+    color: red;
+    font-family: Calibri;
+    font-weight: bold;
+}
+
+#mainpage {
+    color: goldenrod;
+    padding: 5px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    font-family: Calibri;
+    font-weight: bold;
+}
+
+#name {
+    display: flex;
+    flex-direction: row-reverse;
+    font-family: Calibri;
+    font-size: 30px;
+    font-weight: bolder;
+}
